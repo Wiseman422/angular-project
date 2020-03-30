@@ -1,0 +1,22 @@
+<div>
+  <h1>{{ user.name }}</h1>
+  <h3>{{ user.title }}</h3>
+  <button  *ngIf="isCollapsed" (click)="toggleCollapse()">Expand</button>
+  <button  *ngIf="!isCollapsed" (click)="toggleCollapse()">Collapse</button>
+  <div *ngIf="!isCollapsed">
+    <p>{{ user.address }}</p>
+    <div *ngIf="user.phone.length; else elseBlock">
+      <p>Phone : </p>
+      <p *ngFor="let phoneNumber of user.phone; let i=index">
+        {{i + 1}} : {{ phoneNumber }}
+      </p>
+    </div>
+    <ng-template #elseBlock>
+      <div>
+        There is no Phone Number!
+      </div>
+    </ng-template>  
+  </div>
+  <input type="text" [(ngModel)]="textInput" />
+  {{textInput}}
+</div>
